@@ -3,7 +3,7 @@ import ServiceOrderItem from "../service/orderItem.service";
 import { OrderItemDto } from "./orderItems.Dto";
 
 
-@Controller("order-item")
+@Controller('order-item')
 export class OrderItemController {
 
   constructor(private orderItemServie: ServiceOrderItem) { }

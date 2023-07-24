@@ -5,6 +5,7 @@ import OrderItem from "../domain/OrderItem.model";
 import Order from "../domain/Order.model";
 import { OrderItemDto } from "../controllers/orderItems.Dto";
 import Product from "src/product/domain/Product.model";
+import { randomUUID } from "crypto";
 
 @Injectable()
 export default class ServiceOrderItem {
@@ -22,6 +23,7 @@ export default class ServiceOrderItem {
       where: { id: data.productId },
     });
     const item = new OrderItem();
+    item.id = randomUUID()
     item.order = order;
     item.product = product;
     item.quantity = data.quantity;
