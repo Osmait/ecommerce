@@ -11,4 +11,4 @@ import { CategoryModule } from 'src/category/category.module';
   providers: [ProductService],
   exports: [TypeOrmModule],
 })
-export class ProductModule { }
+export class ProductModule {}
