@@ -4,7 +4,7 @@ import { OrderItemDto } from "./orderItems.Dto";
 
 
 @Controller("order-item")
-class OrderItemController {
+export class OrderItemController {
 
   constructor(private orderItemServie: ServiceOrderItem) { }
 
