@@ -12,7 +12,6 @@ export class OrdersService {
     private orderRepository: Repository<Order>
 
   ) { }
-
   public async findAll(): Promise<Order[]> {
     return this.orderRepository.find({
       relations: ["items", "items.product"]

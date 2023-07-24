@@ -1,5 +1,5 @@
 import Category from "../../category/domain/Category.model"
-import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm"
+import { UpdateDateColumn, CreateDateColumn, Column, Entity, ManyToOne, PrimaryColumn } from "typeorm"
 
 
 @Entity()
@@ -18,6 +18,16 @@ export default class Product {
   @ManyToOne(() => Category, (category) => category.products)
   category: Category
 
+  @CreateDateColumn({
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  createAt: Date;
+
+  @UpdateDateColumn({
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  updateAt: Date;
 
 }
-
