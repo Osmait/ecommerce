@@ -1,13 +1,14 @@
-import { Controller, Get, Param, Post, Delete, Body } from '@nestjs/common';
+import { Controller, Get, Param, Post, Delete, Body, Query } from '@nestjs/common';
 import { ProductService } from '../services/product.service';
-import ProductDto from './product.Dto';
+import { FilterProductsDto, ProductDto } from './product.Dto';
+
 
 @Controller('product')
 export class ProductController {
   constructor(private productService: ProductService) { }
   @Get()
-  public getProduct() {
-    return this.productService.getProductAll();
+  public getProduct(@Query() params: FilterProductsDto) {
+    return this.productService.getProductAll(params);
   }
   @Post()
   public create(@Body() product: ProductDto) {
