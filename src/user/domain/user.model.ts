@@ -35,7 +35,7 @@ export class User {
 
 
 
-enum userRole {
+export enum userRole {
   Admin,
   Customer
 }

@@ -15,7 +15,7 @@ export class UserController {
 
   @Post()
   public create(@Body() user: User) {
-    this.create(user)
+    this.userSevice.create(user)
     return "created"
   }
 }
