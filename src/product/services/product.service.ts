@@ -54,6 +54,6 @@ export class ProductService {
     this.productRepository.save(productDB)
   }
   public async delete(id: string): Promise<void> {
-    this.productRepository.delete(id)
+    await this.productRepository.delete(id)
   }
 }
