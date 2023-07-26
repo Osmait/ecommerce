@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { UserService } from '../service/user.service';
 import { User } from '../domain/user.model';
+import { Public } from 'src/auth/guard/public.decorator';
 
 @Controller('user')
 export class UserController {
@@ -13,6 +14,8 @@ export class UserController {
   }
 
 
+
+  @Public()
   @Post()
   public create(@Body() user: User) {
     this.userSevice.create(user)
