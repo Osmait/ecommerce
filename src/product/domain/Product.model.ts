@@ -14,7 +14,11 @@ export default class Product {
   description: string
   @Column()
   stock: number
+  @Column("varchar", {
 
+    nullable: true
+  })
+  imagen: string | null
   @ManyToOne(() => Category, (category) => category.products)
   category: Category
 
