@@ -5,11 +5,13 @@ import { Between, FindOptionsWhere, Repository } from 'typeorm';
 import { randomUUID } from 'crypto';
 import Category from '../../category/domain/Category.model';
 import { FilterProductsDto, ProductDto } from '../controller/product.Dto';
+import { UploadFiles } from '../controller/s3';
 
 @Injectable()
 export class ProductService {
 
   constructor(
+    private uploadImg: UploadFiles,
     @InjectRepository(Category)
     private categoryRepository: Repository<Category>,
     @InjectRepository(Product)
@@ -41,7 +43,6 @@ export class ProductService {
     const category: Category = await this.categoryRepository.findOne({
       where: { id: product.categoryId, }
     })
-    console.log(category)
     const productDB = new Product()
 
     productDB.id = randomUUID()
@@ -56,4 +57,14 @@ export class ProductService {
   public async delete(id: string): Promise<void> {
     await this.productRepository.delete(id)
   }
+  public async upload(id: string, image: Express.Multer.File) {
+    const product = await this.productRepository.findOne({
+      where: { id }
+    })
+    const imageUrl = await this.uploadImg.upload(image)
+    product.imagen = imageUrl
+    return "Upload"
+  }
+
+
 }
