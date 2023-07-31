@@ -6,26 +6,22 @@ import { randomUUID } from 'crypto';
 
 @Injectable()
 export class OrdersService {
-
   constructor(
     @InjectRepository(Order)
-    private orderRepository: Repository<Order>
-
-  ) { }
+    private orderRepository: Repository<Order>,
+  ) {}
   public async findAll(): Promise<Order[]> {
     return this.orderRepository.find({
-      relations: ["items", "items.product"]
-    })
+      relations: ['items', 'items.product'],
+    });
   }
 
   public async created(order: Order): Promise<void> {
-
-    order.id = randomUUID()
-    this.orderRepository.save(order)
-
+    order.id = randomUUID();
+    this.orderRepository.save(order);
   }
 
   public async remove(id: string): Promise<void> {
-    this.orderRepository.delete(id)
+    this.orderRepository.delete(id);
   }
 }

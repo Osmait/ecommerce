@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { UserService } from '../service/user.service';
 import { User } from '../domain/user.model';
-import { Public } from 'src/auth/guard/public.decorator';
+import { Public } from '../../auth/guard/public.decorator';
 
 @Controller('user')
 export class UserController {

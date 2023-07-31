@@ -1,34 +1,27 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ProductService } from './product.service';
+import { ProductController } from './product.controller';
+import { ProductService } from '../services/product.service';
+import { UploadFiles } from './s3';
 import { Repository } from 'typeorm';
-import Category from 'src/category/domain/Category.model';
+import Category from '../../category/domain/Category.model';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import Product from '../domain/Product.model';
-import { UploadFiles } from '../controller/s3';
 
-describe('ServicesService', () => {
-  let service: ProductService;
-  let upload: UploadFiles;
-  let productRepository: Repository<Product>;
+describe('ProductController', () => {
+  let controller: ProductController;
+  let productService: ProductService;
+  let uploadFile: UploadFiles;
   let categoryRepository: Repository<Category>;
-
+  let productRepository: Repository<Product>;
   const CATEGORY_REPOSITORY_TOKEN = getRepositoryToken(Category);
-
   const PRODUCT_REPOSITORY_TOKEN = getRepositoryToken(Product);
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      controllers: [ProductController],
       providers: [
         ProductService,
         UploadFiles,
-        {
-          provide: PRODUCT_REPOSITORY_TOKEN,
-          useValue: {
-            find: jest.fn(),
-            findOne: jest.fn(),
-            save: jest.fn(),
-          },
-        },
         {
           provide: CATEGORY_REPOSITORY_TOKEN,
           useValue: {
@@ -37,19 +30,29 @@ describe('ServicesService', () => {
             save: jest.fn(),
           },
         },
+        {
+          provide: PRODUCT_REPOSITORY_TOKEN,
+          useValue: {
+            find: jest.fn(),
+            findOne: jest.fn(),
+            save: jest.fn(),
+          },
+        },
       ],
     }).compile();
-    service = module.get<ProductService>(ProductService);
-    upload = module.get<UploadFiles>(UploadFiles);
-    productRepository = module.get<Repository<Product>>(
-      PRODUCT_REPOSITORY_TOKEN,
-    );
+
+    controller = module.get<ProductController>(ProductController);
+    productService = module.get<ProductService>(ProductService);
+    uploadFile = module.get<UploadFiles>(UploadFiles);
     categoryRepository = module.get<Repository<Category>>(
       CATEGORY_REPOSITORY_TOKEN,
+    );
+    productRepository = module.get<Repository<Product>>(
+      PRODUCT_REPOSITORY_TOKEN,
     );
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(controller).toBeDefined();
   });
 });

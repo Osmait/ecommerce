@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { ProductService } from '../services/product.service';
 import { FilterProductsDto, ProductDto } from './product.Dto';
-import { Public } from 'src/auth/guard/public.decorator';
+import { Public } from '../../auth/guard/public.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('product')
