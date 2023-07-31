@@ -4,18 +4,15 @@ import Category from '../domain/Category.model';
 
 @Controller('category')
 export class CategoryController {
-
-  constructor(private categoryService: CategoryService) {
-
-  }
+  constructor(private categoryService: CategoryService) {}
   @Get()
   public getAllCategory() {
-    return this.categoryService.findAll()
+    return this.categoryService.findAll();
   }
 
   @Post()
   public createCategory(@Body() category: Category) {
-    this.categoryService.create(category)
-    return "Created"
+    this.categoryService.create(category);
+    return 'Created';
   }
 }

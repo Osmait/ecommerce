@@ -9,11 +9,15 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [ProductModule, CategoryModule, DatabaseModule, OrderModule, UserModule, AuthModule
-
-
+  imports: [
+    ProductModule,
+    CategoryModule,
+    DatabaseModule,
+    OrderModule,
+    UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

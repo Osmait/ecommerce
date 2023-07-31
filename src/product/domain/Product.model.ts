@@ -1,26 +1,31 @@
-import Category from "../../category/domain/Category.model"
-import { UpdateDateColumn, CreateDateColumn, Column, Entity, ManyToOne, PrimaryColumn } from "typeorm"
-
+import Category from '../../category/domain/Category.model';
+import {
+  UpdateDateColumn,
+  CreateDateColumn,
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryColumn,
+} from 'typeorm';
 
 @Entity()
 export default class Product {
   @PrimaryColumn()
-  id: string
+  id: string;
   @Column()
-  name: string
+  name: string;
   @Column()
-  price: number
+  price: number;
   @Column()
-  description: string
+  description: string;
   @Column()
-  stock: number
-  @Column("varchar", {
-
-    nullable: true
+  stock: number;
+  @Column('varchar', {
+    nullable: true,
   })
-  imagen: string | null
+  imagen: string | null;
   @ManyToOne(() => Category, (category) => category.products)
-  category: Category
+  category: Category;
 
   @CreateDateColumn({
     type: 'timestamptz',
@@ -33,5 +38,4 @@ export default class Product {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updateAt: Date;
-
 }

@@ -1,19 +1,26 @@
-import Order from "../../order/domain/Order.model"
-import { CreateDateColumn, UpdateDateColumn, Column, Entity, PrimaryColumn, OneToMany } from "typeorm"
+import Order from '../../order/domain/Order.model';
+import {
+  CreateDateColumn,
+  UpdateDateColumn,
+  Column,
+  Entity,
+  PrimaryColumn,
+  OneToMany,
+} from 'typeorm';
 @Entity()
 export class User {
   @PrimaryColumn()
-  id: string
+  id: string;
   @Column()
-  name: string
+  name: string;
   @Column()
-  lastName: string
+  lastName: string;
   @Column()
-  password: string
+  password: string;
   @Column()
-  email: string
+  email: string;
   @Column()
-  role: userRole
+  role: userRole;
 
   @CreateDateColumn({
     type: 'timestamptz',
@@ -28,14 +35,10 @@ export class User {
   updateAt: Date;
 
   @OneToMany(() => Order, (order) => order.user)
-  orders: Order[]
-
+  orders: Order[];
 }
-
-
-
 
 export enum userRole {
   Admin,
-  Customer
+  Customer,
 }

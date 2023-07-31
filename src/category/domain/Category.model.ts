@@ -1,19 +1,25 @@
-import Product from "../../product/domain/Product.model"
+import Product from '../../product/domain/Product.model';
 
-import { UpdateDateColumn, CreateDateColumn, Column, Entity, OneToMany, PrimaryColumn } from "typeorm"
-
+import {
+  UpdateDateColumn,
+  CreateDateColumn,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
 
 @Entity()
 export default class Category {
   @PrimaryColumn()
-  id: string
+  id: string;
   @Column()
-  name: string
+  name: string;
   @Column()
-  description: string
+  description: string;
 
   @OneToMany(() => Product, (product) => product.category)
-  products: Product[]
+  products: Product[];
   @CreateDateColumn({
     type: 'timestamptz',
     default: () => 'CURRENT_TIMESTAMP',
@@ -25,6 +31,4 @@ export default class Category {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updateAt: Date;
-
-
 }

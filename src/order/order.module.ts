@@ -12,6 +12,6 @@ import ServiceOrderItem from './service/orderItem.service';
   imports: [ProductModule, TypeOrmModule.forFeature([Order, OrderItem])],
   controllers: [OrdersController, OrderItemController],
   providers: [OrdersService, ServiceOrderItem],
-  exports: [TypeOrmModule]
+  exports: [TypeOrmModule],
 })
-export class OrderModule { }
+export class OrderModule {}

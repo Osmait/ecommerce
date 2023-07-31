@@ -1,16 +1,14 @@
-import { Body, Controller, Post } from "@nestjs/common";
-import ServiceOrderItem from "../service/orderItem.service";
-import { OrderItemDto } from "./orderItems.Dto";
-
+import { Body, Controller, Post } from '@nestjs/common';
+import ServiceOrderItem from '../service/orderItem.service';
+import { OrderItemDto } from './orderItems.Dto';
 
 @Controller('order-item')
 export class OrderItemController {
-
-  constructor(private orderItemServie: ServiceOrderItem) { }
+  constructor(private orderItemServie: ServiceOrderItem) {}
 
   @Post()
   public created(@Body() orderItem: OrderItemDto) {
-    this.orderItemServie.create(orderItem)
-    return "created!"
+    this.orderItemServie.create(orderItem);
+    return 'created!';
   }
 }

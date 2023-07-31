@@ -16,7 +16,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('product')
 export class ProductController {
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
   @Get()
   public getProduct(@Query() params: FilterProductsDto) {
     return this.productService.getProductAll(params);
@@ -29,8 +29,11 @@ export class ProductController {
   @Public()
   @Post('upload:id')
   @UseInterceptors(FileInterceptor('image'))
-  async uploadImagen(@Param("id") id: string, @UploadedFile() image: Express.Multer.File) {
-    this.productService.upload(id, image)
+  async uploadImagen(
+    @Param('id') id: string,
+    @UploadedFile() image: Express.Multer.File,
+  ) {
+    this.productService.upload(id, image);
   }
   @Delete(':id')
   public delete(@Param('id') id: string) {

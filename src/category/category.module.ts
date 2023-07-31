@@ -8,6 +8,6 @@ import Category from './domain/Category.model';
   imports: [TypeOrmModule.forFeature([Category])],
   controllers: [CategoryController],
   providers: [CategoryService],
-  exports: [TypeOrmModule]
+  exports: [TypeOrmModule],
 })
-export class CategoryModule { }
+export class CategoryModule {}

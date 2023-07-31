@@ -5,20 +5,17 @@ import { Public } from 'src/auth/guard/public.decorator';
 
 @Controller('user')
 export class UserController {
+  constructor(private userSevice: UserService) {}
 
-  constructor(private userSevice: UserService) { }
-
-  @Get(":id")
-  public findUser(@Param("id") id: string) {
-    return this.userSevice.findOne(id)
+  @Get(':id')
+  public findUser(@Param('id') id: string) {
+    return this.userSevice.findOne(id);
   }
-
-
 
   @Public()
   @Post()
   public create(@Body() user: User) {
-    this.userSevice.create(user)
-    return "created"
+    this.userSevice.create(user);
+    return 'created';
   }
 }

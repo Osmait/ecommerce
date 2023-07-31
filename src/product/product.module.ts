@@ -12,4 +12,4 @@ import { UploadFiles } from './controller/s3';
   providers: [ProductService, UploadFiles],
   exports: [TypeOrmModule],
 })
-export class ProductModule { }
+export class ProductModule {}
